@@ -54,6 +54,39 @@ const getDadosPerfilUsuario =  function(numeroUsuario){
     return resultado
 }
 
+// função que é responsável por retornar Dados dos Contatos que o usuário possui | filtro (número de telefone)
+const getDadosContatosDoUsuario = function(numeroUsuario){
+
+    let listaContatos = []
+    let resultado     = null
+
+    contatos["whats-users"].forEach(function(itemContato){
+        
+        if(String(numeroUsuario.trim().toUpperCase()) == String(itemContato.number).trim()){
+            
+            itemContato.contacts.forEach(function(itemContatosUsuario){
+                listaContatos.push(
+                    {
+                        nome     : itemContatosUsuario.name,
+                        foto     : itemContatosUsuario.image,
+                        descricao: itemContatosUsuario.description
+                    }
+                )
+            })
+        }   
+    })
+    
+    resultado = {dados_contatos_usuario: listaContatos}
+
+    if(!resultado || listaContatos.length == 0){
+        return false
+    }
+
+    return resultado
+} 
+
+
 // console.dir(getListaDadosUsuario(), { depth: null, colors: true });
-// console.log(getDadosPerfilUsuario("11966578996"))
+// console.log(getDadosPerfilUsuario("1123"))
+// onsole.log(getDadosContatosDoUsuario("11966578996"))
 
