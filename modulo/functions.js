@@ -32,7 +32,7 @@ const getDadosPerfilUsuario =  function(numeroUsuario){
 
     contatos["whats-users"].forEach(function(itemContato){
         
-        if(String(numeroUsuario.trim().toUpperCase()) == String(itemContato.number).trim()){
+        if(String(numeroUsuario.trim().toLowerCase()) == String(itemContato.number).trim().toLowerCase()){
             dadosUsuario = itemContato
         }
     })
@@ -62,7 +62,7 @@ const getDadosContatosDoUsuario = function(numeroUsuario){
 
     contatos["whats-users"].forEach(function(itemContato){
         
-        if(String(numeroUsuario.trim().toUpperCase()) == String(itemContato.number).trim()){
+        if(String(numeroUsuario.trim().toLowerCase()) == String(itemContato.number).trim().toLowerCase()){
             
             itemContato.contacts.forEach(function(itemContatosUsuario){
                 listaContatos.push(
@@ -85,8 +85,34 @@ const getDadosContatosDoUsuario = function(numeroUsuario){
     return resultado
 } 
 
+// função responsável por retornar as Mensagens Trocadas pelos Contatos do Usuário | filtro (número de telefone)
+const getMensagensTrocadasPeloUsuario = function(numeroUsuario){
+
+    let listaMensagem = []
+    let resultado     = null
+
+    contatos["whats-users"].forEach(function(itemContato){
+        
+        if(String(numeroUsuario).trim().toLowerCase() == itemContato.number){
+
+            itemContato.contacts.forEach(function(itemContatosUsuario){
+                listaMensagem.push(itemContatosUsuario.messages)
+            })
+        }
+    })
+
+    resultado = {mensagem: listaMensagem}
+
+    if(!resultado || !listaMensagem){
+        return false
+    }
+
+    return resultado
+}
 
 // console.dir(getListaDadosUsuario(), { depth: null, colors: true });
 // console.log(getDadosPerfilUsuario("1123"))
 // onsole.log(getDadosContatosDoUsuario("11966578996"))
+// console.log(getMensagensTrocadasPeloUsuario("11966578996"))
+
 
