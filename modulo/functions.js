@@ -23,4 +23,37 @@ const getListaDadosUsuario = function(){
     return resultado
 }
 
-//console.dir(getListaDadosUsuario(), { depth: null, colors: true });
+
+// função reponsável por retornar Dados do Perfil de um Usuário | filtro (número de telefone)
+const getDadosPerfilUsuario =  function(numeroUsuario){
+
+    let dadosUsuario = null
+    let resultado    = null
+
+    contatos["whats-users"].forEach(function(itemContato){
+        
+        if(String(numeroUsuario.trim().toUpperCase()) == String(itemContato.number).trim()){
+            dadosUsuario = itemContato
+        }
+    })
+    
+    resultado = {
+        nome_conta       : dadosUsuario.account,
+        nick             : dadosUsuario.nickname,
+        numero           : dadosUsuario.number,
+        foto_perfil      : dadosUsuario["profile-image"],
+        cor_de_fundo     : dadosUsuario.background,
+        data_criacao     : dadosUsuario["created-since"].start,
+        data_encerramento: dadosUsuario["created-since"].end
+    }
+    
+    if(!resultado || !dadosUsuario){
+        return false
+    }
+
+    return resultado
+}
+
+// console.dir(getListaDadosUsuario(), { depth: null, colors: true });
+// console.log(getDadosPerfilUsuario("11966578996"))
+
