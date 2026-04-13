@@ -88,12 +88,11 @@ const selecionarUsuarioPerfil = function(dadosUsuario){
             nick        : dadosUsuario.nickname,
             numero      : dadosUsuario.number,
             foto_perfil : dadosUsuario["profile-image"],
-            cor_de_fundo: dadosUsuario.background
-        },
-
-        criado_desde: {
-            data_criacao     : dadosUsuario["created-since"].start,
-            data_encerramento: dadosUsuario["created-since"].end
+            cor_de_fundo: dadosUsuario.background,
+            criado_desde: {
+                data_criacao     : dadosUsuario["created-since"].start,
+                data_encerramento: dadosUsuario["created-since"].end
+            }
         }
     }
 
@@ -141,11 +140,12 @@ const getListaDadosUsuarios = function(){
 const getDadosPerfilUsuario = function(numeroUsuario){
 
     let dadosUsuario = buscarDadosUsuarioPeloNumero(numeroUsuario)
-    let resultado    = selecionarUsuarioPerfil(dadosUsuario)
 
     if(!dadosUsuario){
         return respostaPadrao.erro("Nenhum usuário foi encontrado", 404)
     }
+
+    let resultado = selecionarUsuarioPerfil(dadosUsuario)
 
     return respostaPadrao.sucesso(resultado, 200)
 }
@@ -221,18 +221,18 @@ const getMensagensTrocadasPeloUsuario = function(numeroUsuario){
 * REQUISITO 5 - CONVERSA ESPECÍFICA
 * função responsável por retornar dados do usuário, contato e sua conversa
 * **********************************************************************/
-const getBuscarConversasDoUsuarioComContatos = function(numeroUsuario, nomeContato){
+const getBuscarConversasDoUsuarioComContato = function(numeroUsuario, nomeContato){
 
     let nomeValido    = validacaoDados.validarNome(nomeContato)
     let dadosUsuario  = buscarDadosUsuarioPeloNumero(numeroUsuario)
     let dadosContatos = buscarDadosContatosPeloNumero(numeroUsuario)
 
     if(!nomeValido){
-        return respostas.erro("Nome do contato inválido", 400)
+        return respostaPadrao.erro("Nome do contato inválido", 400)
     }
 
     if(!dadosUsuario || !dadosContatos){
-        return respostas.erro("Usuário ou contatos não encontrados", 404)
+        return respostaPadrao.erro("Usuário ou contatos não encontrados", 404)
     }
     
     let usuario   = selecionarUsuarioResumo(dadosUsuario)
@@ -240,7 +240,7 @@ const getBuscarConversasDoUsuarioComContatos = function(numeroUsuario, nomeConta
 
         dadosContatos.forEach(function(itemContato){
               
-            if(compararValorIguais(nomeValido, itemContato.name)){
+            if(compararValorIguais(nomeValido, itemContato.name) && compararValorIguais(numeroUsuario, dadosUsuario.number)){
 
             resultado.contato = {
                     nome         : itemContato.name,
@@ -301,9 +301,8 @@ const getPesquisarMensagensPorPalavraChave = function(numeroUsuario, nomeContato
             itemContato.messages.forEach(function(itemMensagem){
 
                 let content = itemMensagem.content.trim().toLowerCase()
-                let sender  = itemMensagem.sender.trim().toLowerCase()
-
-                if(content.includes(palavraValida) || sender.includes(palavraValida)){
+                
+                if(content.includes(palavraValida)){
                     listaMensagemPalavraChave.push(itemMensagem)
                 }
             })
@@ -330,6 +329,6 @@ module.exports = {
     getDadosPerfilUsuario,
     getDadosContatosDoUsuario,
     getMensagensTrocadasPeloUsuario,
-    getBuscarConversasDoUsuarioComContatos,
+    getBuscarConversasDoUsuarioComContato,
     getPesquisarMensagensPorPalavraChave
 }
