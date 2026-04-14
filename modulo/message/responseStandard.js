@@ -23,6 +23,7 @@ const sucesso = function(dados, statusCode){
 
 //  função responsável por retornar a resposta de erro da API
 const erro = function(mensagem, statusCode) {
+    
     let respostaPadraoErro = 
     {
         status: false,

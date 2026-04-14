@@ -10,7 +10,7 @@ const express = require('express')
 const cors    = require('cors')
 
 // Import do arquivo de 'functions.js' referente as funções da API
-const whatsappFunction = require('./modulo/mensagem/functions.js')
+const whatsappFunction = require('./modulo/message/functions.js')
 
 // Criando uma instância do framework Express para criar a API
 const app = express()

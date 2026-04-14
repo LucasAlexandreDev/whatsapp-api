@@ -6,13 +6,13 @@
 * **********************************************************************/
 
 // Import do arquivo de 'contatos.js' referente á um falso db
-const contatoDados = require("./contatos.js")
+const contatoDados = require("./contact.js")
 
 // Import do arquivo de 'validacaoDados.js' referente á todas as validações necessárias do sistema
-const validacaoDados = require("./validacaoDados.js")
+const validacaoDados = require("./validationData.js")
 
 // Import do arquivo de 'respostaPadrao.js' referente ao retorno padrão de resposta da API
-const respostaPadrao = require("./respostaPadrao.js")
+const respostaPadrao = require("./responseStandard.js")
 
 // Crio uma variável global contendo todos os dados dos contatos
 const contatos = contatoDados.contatos

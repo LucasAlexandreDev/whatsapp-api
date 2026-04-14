@@ -64,7 +64,7 @@ function validarNome(nome){
 // função responsável por validar palavra-chave
 function validarPalavraChave(palavra){
 
-    if(palavra == null || palavra == ''){
+    if(palavra == null || palavra == ""){
         return false
     }
 
