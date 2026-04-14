@@ -37,7 +37,7 @@ const documentacaoAPI =
 
         "configuration_url" : {
             "base_url"  : "http://localhost:8080",
-            "render"    : ""
+            "render"    : "https://whatsapp-api-s5tm.onrender.com/"
         },
 
         "endpoints": [
