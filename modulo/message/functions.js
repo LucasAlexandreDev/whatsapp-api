@@ -255,6 +255,10 @@ const getBuscarConversasDoUsuarioComContato = function(numeroUsuario, nomeContat
             }
         })
 
+    if(!resultado.contato || !resultado.conversas){
+        return respostaPadrao.erro("Lista de conversas do usuário com contato, não encontrada", 404)
+    }
+
     return respostaPadrao.sucesso(resultado, 200)
 }
 
