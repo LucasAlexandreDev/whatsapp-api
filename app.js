@@ -12,9 +12,11 @@ const cors    = require('cors')
 // Import do arquivo de 'functions.js' referente as funções da API
 const whatsappFunction = require('./modulo/message/functions.js')
 
+// Import do arquivo de 'apiDocumentation.js' referente a documentação da API
+const documentacaoAPI  = require('./modulo/message/apiDocumentation.js') 
+
 // Criando uma instância do framework Express para criar a API
 const app = express()
-
 
 const corsOptions = 
 {
@@ -88,7 +90,7 @@ app.get('/v1/whatsapp/conversa/trocada/usuario/:numeroUsuario/contato', function
 
 
 // Endpoint - requisito 6 | responsável por retornar os dados resumidos do usuário, contato e as mensagens que possuem a palvra-chave
-app.get('/v1/palavra/chave/conversa/usuario/:numeroUsuario/contato', function(request, response){
+app.get('/v1/whatsapp/palavra/chave/conversa/usuario/:numeroUsuario/contato', function(request, response){
 
     let numero               = request.params.numeroUsuario
     let nome                 = request.query.nomeContato
@@ -97,4 +99,10 @@ app.get('/v1/palavra/chave/conversa/usuario/:numeroUsuario/contato', function(re
 
     response.status(conversaPalavraChave.status_code)
     response.json(conversaPalavraChave)
+})
+
+
+// Endpoint - help (docs) | responsável por retornar toda a documentação da API + os Enpoints necessário para a sua utilização
+app.get('/v1/whatsapp/help', function(request, response){
+    response.json(documentacaoAPI)
 })

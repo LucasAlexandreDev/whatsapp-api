@@ -62,7 +62,7 @@ const documentacaoAPI =
                     "params"       : {"numeroUsuario": "string (obrigatório)"},
                     "query_params" : null
                 },
-                "request_example": "/v1/whatsapp/dados/perfil/usuario/40028922"
+                "request_example": "/v1/whatsapp/dados/perfil/usuario/11987876567"
             },
 
             {
@@ -74,7 +74,7 @@ const documentacaoAPI =
                     "params"       : {"numeroUsuario": "string (obrigatório)"},
                     "query_params" : null
                 },
-                "request_example": "/v1/whatsapp/dados/contatos/usuario/40028922"
+                "request_example": "/v1/whatsapp/dados/contatos/usuario/11987876567"
             },
 
             {
@@ -86,7 +86,7 @@ const documentacaoAPI =
                     "params"       : {"numeroUsuario": "string (obrigatório)"},
                     "query_params" : null
                 },
-                "request_example": "/v1/whatsapp/conversas/trocadas/usuario/contatos/40028922"
+                "request_example": "/v1/whatsapp/conversas/trocadas/usuario/contatos/11987876567"
             },
 
             {
@@ -98,12 +98,12 @@ const documentacaoAPI =
                     "params"       : {"numeroUsuario": "string (obrigatório)"},
                     "query_params" : {"nomeContato"  : "string (obrigatório)"}
                 },
-                "request_example": "/v1/whatsapp/conversa/trocada/usuario/40028922?nomeContato=Lucas"
+                "request_example": "/v1/whatsapp/conversa/trocada/usuario/11987876567/contato?nomeContato=Ana%20Maria"
             },
 
             {
                 "name"           : "Buscar mensagens por palavra-chave",
-                "route"          : "/v1/palavra/chave/conversa/usuario/:numeroUsuario/contato",
+                "route"          : "/v1/whatsapp/palavra/chave/conversa/usuario/:numeroUsuario/contato",
                 "description"    : "Retorna os dados do usuário, contato e as mensagens filtradas por palavra-chave",
                 "method"         : "GET",
                 "parameter_types": {
@@ -113,7 +113,7 @@ const documentacaoAPI =
                         "palavraChave" : "string (obrigatório)"
                     }
                 },
-                "request_example": "/v1/palavra/chave/conversa/usuario/40028922/contato?nomeContato=Lucas&palavraChave=back"
+                "request_example": "/v1/whatsapp/palavra/chave/conversa/usuario/11987876567/contato?nomeContato=Ana%20Maria&palavraChave=you"
             }
         ]
     }
